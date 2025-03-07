@@ -1,7 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  let token = null;
+  const navigate = useNavigate();
+  if (localStorage.getItem("token")) {
+    token = localStorage.getItem("token");
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  }
     return (
       <div className="navbar bg-blue-950 shadow-sm">
         <div className="navbar-start">
@@ -58,9 +68,12 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end mx-5">
-          <a href="/login" className="text-white uppercase font-bold">
-            Login
-          </a>
+          {!token && (
+            <a href="/login" className="text-white uppercase font-bold">
+              Login
+            </a>
+          )}
+          {token && <div onClick={handleLogout} className="text-white uppercase font-bold bg-red-500 px-2 py-1 rounded-md cursor-pointer">Logout</div>}
         </div>
       </div>
     );

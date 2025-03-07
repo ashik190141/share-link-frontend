@@ -7,6 +7,7 @@ import LogIn from "./pages/Authentication/SignIn/LogIn";
 import SignUpA from "./pages/Authentication/SignUp/SignUpA";
 import Main from "./Layout/Main";
 import GetFiles from "./pages/Files/GetFiles";
+import ShowFiles from "./pages/Files/ShowFiles";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "files",
         element: <GetFiles />
+      },
+      {
+        path: "file/share/:id",
+        element: <ShowFiles />
       }
     ],
   },
